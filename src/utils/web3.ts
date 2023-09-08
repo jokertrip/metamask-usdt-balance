@@ -1,3 +1,5 @@
+import { ethers } from 'ethers'
+
 export const switchToBscNetwork = async () => {
 	try {
 		await window.ethereum.request({
@@ -14,6 +16,8 @@ export const switchToBscNetwork = async () => {
 				blockExplorerUrls: ['https://bscscan.com/'],
 			}]
 		})
+		const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+		return accounts[0]
 	} catch (error) {
 		console.error(error)
 	}
